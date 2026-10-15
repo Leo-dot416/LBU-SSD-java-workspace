@@ -1,10 +1,12 @@
 public class WordProcessor implements Counter
 {
-    String text;
-
     @Override
     public int countWords(String sentence)
     {
+        if (sentence == null || sentence.trim().isEmpty())
+        {
+            sentence = getText();
+        }
         String[] words = sentence.trim().split("\\s+");
         return words.length;
     }
@@ -12,6 +14,11 @@ public class WordProcessor implements Counter
     @Override
     public int countLetters(String sentence)
     {
+        if (sentence == null || sentence.trim().isEmpty())
+        {
+            sentence = getText();
+        }
+
         int count = 0;
 
         for (int i = 0; i < sentence.length(); i++)
@@ -23,9 +30,15 @@ public class WordProcessor implements Counter
         return count;
     }
 
+    String text = "Value is null";
+
     @Override
     public int getLength(String sentence)
     {
+        if (sentence == null || sentence.trim().isEmpty())
+        {
+            sentence = getText();
+        }
         return sentence.length();
     }
 
@@ -34,9 +47,9 @@ public class WordProcessor implements Counter
         return text;
     }
 
-    public void setText()
+    public void setText(String sentence)
     {
-        this.text = text;
+        this.text = sentence;
     }
 
 }
